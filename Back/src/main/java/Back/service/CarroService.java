@@ -3,6 +3,7 @@ package Back.service;
 import Back.domain.DTO.carroDTO;
 import Back.domain.entity.Carro;
 import Back.domain.entity.Marca;
+import Back.domain.entity.Proprietario;
 import Back.repository.CarroRepository;
 import Back.service.exceptions.DataIntegrityViolationException;
 import Back.service.exceptions.ObjectNotFoundException;
@@ -10,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -67,6 +67,11 @@ public class CarroService {
         return this.repository.findByMarca(marca);
     }
 
+    public List<Carro> findByProprietario(Integer idProprietario){
+        Proprietario proprietario =  new Proprietario();
+        proprietario.setId(idProprietario);
+        return this.repository.findByProprietarios(proprietario);
+    }
 
     public List<Carro> findByAcimaAno(Integer ano){
         return this.repository.findByAcimaAno(ano);

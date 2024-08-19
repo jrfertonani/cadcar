@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -83,6 +82,17 @@ public class CarroController {
                         .toList()
         );
     }
+
+    @GetMapping("findByProprietarios")
+    public ResponseEntity<List<Carro>> findByProprietario(@RequestParam Integer idProprietario){
+        return ResponseEntity.ok().body(
+                service.findByProprietario(Integer.valueOf(idProprietario))
+                        .stream().map(x -> mapper.map(x, Carro.class))
+                        .toList()
+        );
+    }
+
+
 
     @GetMapping("findByAcimaAno")
     public ResponseEntity<List<Carro>> findByAcimaAno(@RequestParam Integer ano){

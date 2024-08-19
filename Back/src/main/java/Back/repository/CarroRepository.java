@@ -2,6 +2,7 @@ package Back.repository;
 
 import Back.domain.entity.Carro;
 import Back.domain.entity.Marca;
+import Back.domain.entity.Proprietario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,6 +17,8 @@ public interface CarroRepository extends JpaRepository<Carro, Integer> {
 
     // http://localhost:8080/carros/findByMarca   //params nome: idmarca ,  value: 1
     public List<Carro> findByMarca(Marca marca);
+    // http://localhost:8080/carros/findByProprietario   //params nome: idproprietario ,  value: 1
+    public List<Carro> findByProprietarios(Proprietario proprietario);
 
     // http://localhost:8080/carros/findByAcimaAno   //params nome: ano ,  value: ano do carro
     @Query("from Carro c WHERE c.ano > :ano")
